@@ -11,14 +11,15 @@ public class Main {
         final double SUBINT = 3600 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
 
-        for (beta = 0.0; beta <= Math.pow(1, -7); beta += Math.pow(1, -16) ) {
-            for (alpha = 0.0; alpha <= 1.0/3.0; alpha += Math.pow(1, -7)) {
+        for (beta = 0.0; beta <= 0.0000001; beta += 0.0000000000000001 ) {
+            for (alpha = 0.0; alpha <= 1.0/3.0; alpha += 0.0000001) {
                 double firstMidTime = (deltaTime / 2.0);
                 double sumTemp = INITTEMP; // Initialize starting tempterature
                 for (double time = firstMidTime; time < SUBINT; time += deltaTime) {
                     double deltaTemp = diffFunc(alpha, beta, sumTemp);
                     sumTemp += deltaTemp;
                 }
+                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp);
             }
         }
     }
