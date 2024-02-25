@@ -2,22 +2,49 @@ import java.util.ArrayList;
 
 public class Main {
     private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
+    static ArrayList<Double> tempVtime = new ArrayList<Double>();
+    static ArrayList<Double> data = new ArrayList<Double>(62);
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
+        data = Data.extractData();
+        for (int i = 0; i <= 61; i += 1) {
+            tempVtime.add(0.0);
+        }
+
         double alpha = 0;
         double beta = 0;
         double sumRSquare = 0;
         double deltaTime = 1;
         final double SUBINT = 3600 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
-
+        
+        // Optimization of arbitary coefficient for radiation Beta
         for (beta = 0.0; beta <= 0.0000001; beta += 0.0000000000000001 ) {
+            
+            // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = 0.0; alpha <= 1.0/3.0; alpha += 0.0000001) {
-                double firstMidTime = (deltaTime / 2.0);
                 double sumTemp = INITTEMP; // Initialize starting tempterature
-                for (double time = firstMidTime; time < SUBINT; time += deltaTime) {
-                    double deltaTemp = diffFunc(alpha, beta, sumTemp);
+                
+                // Perform trapezoid reimann sum
+                for (double time = 0; time < SUBINT; time += deltaTime) {
+                    // Add supposed data point at minute timestamps
+                    if ( (int) (time % 60) == 0) {
+                        // tempVtime.set( (int) (time / 60), sumTemp);
+                        // System.out.println("------------------");
+                        // System.out.println(tempVtime.get((int) (time / 60)));
+                    }
+                    
+                    double deltaTemp = (diffFunc(alpha, beta, sumTemp)) / 2.0;
+                    System.out.println(deltaTemp);
                     sumTemp += deltaTemp;
+                    System.out.println(sumTemp);
+                }
+
+                sumRSquare = 0;
+                short i = 0;
+                for (Double dataPoint : data) {
+                    sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
+                    i += 1;
                 }
                 System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp);
             }

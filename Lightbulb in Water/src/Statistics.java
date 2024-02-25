@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 public class Statistics {
     private double alpha;
     private double beta;
     private double sumRSquare;
-
-    public Statistics(double alpha, double beta, double sumRSquare) {
+    private ArrayList<Double> data = new ArrayList<Double>(60);
+    
+    public Statistics(double alpha, double beta, double sumRSquare, ArrayList<Double> data) {
         this.alpha = alpha;
         this.beta = beta;
         this.sumRSquare = sumRSquare;
@@ -31,6 +33,14 @@ public class Statistics {
 
     public void setSumRSquare(double sumRSquare) {
         this.sumRSquare = sumRSquare;
+    }
+
+    public ArrayList<Double> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<Double> data) {
+        this.data = data;
     }
     
 }
