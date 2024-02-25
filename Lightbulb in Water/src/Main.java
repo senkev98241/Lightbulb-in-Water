@@ -34,9 +34,9 @@ public class Main {
                         // System.out.println(tempVtime.get((int) (time / 60)));
                     }
                     
-                    double deltaTemp = (diffFunc(alpha, beta, sumTemp)) / 2.0;
+                    double deltaTemp = (diffFunc(alpha, beta, sumTemp));
                     System.out.println(deltaTemp);
-                    sumTemp += deltaTemp;
+                    sumTemp = (sumTemp + sumTemp + deltaTemp) / 2.0; // Trapezoidal reimann
                     System.out.println(sumTemp);
                 }
 
