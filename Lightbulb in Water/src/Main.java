@@ -14,30 +14,36 @@ public class Main {
         double alpha = 0;
         double beta = 0;
         double sumRSquare = 0;
-        double deltaTime = 1;
-        final double SUBINT = 3600 * deltaTime; // For 3600 seconds
+        double deltaTime = 0.01;
+        final double SUBINT = 3660; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
         
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = 0.0; beta <= 0.0000001; beta += 0.0000000000000001 ) {
-            
+            beta = 0.0000000002;
             // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = 0.0; alpha <= 1.0/3.0; alpha += 0.0000001) {
                 double sumTemp = INITTEMP; // Initialize starting tempterature
-                
+                double deltaTemp = 0;
+                double prevDelta;
+                alpha = 0.25;
+
                 // Perform trapezoid reimann sum
-                for (double time = 0; time < SUBINT; time += deltaTime) {
+                for (double time = 0; time < SUBINT + deltaTime; time += deltaTime) {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         // tempVtime.set( (int) (time / 60), sumTemp);
                         // System.out.println("------------------");
                         // System.out.println(tempVtime.get((int) (time / 60)));
                     }
-                    
-                    double deltaTemp = (diffFunc(alpha, beta, sumTemp));
-                    System.out.println(deltaTemp);
-                    sumTemp = (sumTemp + sumTemp + deltaTemp) / 2.0; // Trapezoidal reimann
-                    System.out.println(sumTemp);
+                    prevDelta = deltaTemp / 2.0 ;
+                    deltaTemp = (diffFunc(alpha, beta, sumTemp + prevDelta)) * deltaTime;
+                    // System.out.println(deltaTemp);
+                    sumTemp = (sumTemp + prevDelta + sumTemp + prevDelta + deltaTemp) / 2.0; // Trapezoidal reimann
+                    if (time > 3600) {
+                        System.out.println(time);
+                        System.out.println(sumTemp);
+                    }
                 }
 
                 sumRSquare = 0;
@@ -47,8 +53,9 @@ public class Main {
                     i += 1;
                 }
                 System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp);
-            }
-        }
+                break;
+            } break;
+        } 
     }
 
     static double diffFunc(double alpha, double beta, double temp) {
