@@ -25,8 +25,11 @@ public class Main {
             for (alpha = 0.0; alpha <= 1.0/3.0; alpha += 0.0000001) {
                 double sumTemp = INITTEMP; // Initialize starting tempterature
                 
+                double deltaTemp = 0;
+                double prevDelta;
+                
                 // Perform trapezoid reimann sum
-                for (double time = 0; time < SUBINT; time += deltaTime) {
+                for (double time = 0; time <= SUBINT + deltaTime; time += deltaTime) {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         // tempVtime.set( (int) (time / 60), sumTemp);
@@ -34,11 +37,14 @@ public class Main {
                         // System.out.println(tempVtime.get((int) (time / 60)));
                     }
                     
-                    double deltaTemp = (diffFunc(alpha, beta, sumTemp));
-                    System.out.println(deltaTemp);
-                    sumTemp = (sumTemp + sumTemp + deltaTemp) / 2.0; // Trapezoidal reimann
-                    System.out.println(sumTemp);
-                }
+                    prevDelta = deltaTemp / 2.0 ;
+                    deltaTemp = (diffFunc(alpha, beta, sumTemp + prevDelta)) * deltaTime;
+                    // System.out.println(deltaTemp);
+                    sumTemp = (sumTemp + prevDelta + sumTemp + prevDelta + deltaTemp) / 2.0; // Trapezoidal reimann
+                    if (time > 3600) {
+                        System.out.println(time);
+                        System.out.println(sumTemp);
+                    }
 
                 sumRSquare = 0;
                 short i = 0;
