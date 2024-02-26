@@ -19,17 +19,18 @@ public class Main {
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
         
         // Optimization of arbitary coefficient for radiation Beta
-        for (beta = 0.0; beta <= 0.0000001; beta += 0.0000000000000001 ) {
+        for (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
             
             // Optimization of arbitrary coefficient for conduction Alpha
-            for (alpha = 0.0; alpha <= 1.0/3.0; alpha += 0.0000001) {
+            for (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
+                Math.random();
                 double sumTemp = INITTEMP; // Initialize starting tempterature
                 
                 double deltaTemp = 0;
                 double prevDelta;
-                
+                // alpha = 0;
                 // Perform trapezoid reimann sum
-                for (double time = 0; time <= SUBINT + deltaTime; time += deltaTime) {
+                for (double time = 0; time <= SUBINT + deltaTime/2.0 ; time += deltaTime) {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         // tempVtime.set( (int) (time / 60), sumTemp);
@@ -42,18 +43,22 @@ public class Main {
                     // System.out.println(deltaTemp);
                     sumTemp = (sumTemp + prevDelta + sumTemp + prevDelta + deltaTemp) / 2.0; // Trapezoidal reimann
                     if (time > 3600) {
-                        System.out.println(time);
-                        System.out.println(sumTemp);
+                        // System.out.println(time);
+                        // System.out.println(sumTemp);
                     }
-
-                sumRSquare = 0;
-                short i = 0;
-                for (Double dataPoint : data) {
-                    sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
-                    i += 1;
+                    sumRSquare = 0;
+                    short i = 0;
+                    for (Double dataPoint : data) {
+                        sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
+                        i += 1;
+                    }
+                    System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp);
+                    System.out.println(sumRSquare);
                 }
-                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp);
-            }
+                // System.out.println("hold");
+                break;
+            } 
+            break;
         }
     }
 
