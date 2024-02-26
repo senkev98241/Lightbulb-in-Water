@@ -20,20 +20,20 @@ public class Main {
         
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = 0.0; beta <= 0.0000001; beta += 0.0000000000000001 ) {
-            beta = 0.0000000001;
+            
             // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = 0.0; alpha <= 1.0/3.0; alpha += 0.0000001) {
                 double sumTemp = INITTEMP; // Initialize starting tempterature
-                alpha = 0.25;
+                
                 // Perform trapezoid reimann sum
-                for (double time = 0; time <= SUBINT; time += deltaTime) {
+                for (double time = 0; time < SUBINT; time += deltaTime) {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         // tempVtime.set( (int) (time / 60), sumTemp);
                         // System.out.println("------------------");
                         // System.out.println(tempVtime.get((int) (time / 60)));
                     }
-                    System.out.println(time);
+                    
                     double deltaTemp = (diffFunc(alpha, beta, sumTemp));
                     System.out.println(deltaTemp);
                     sumTemp = (sumTemp + sumTemp + deltaTemp) / 2.0; // Trapezoidal reimann
@@ -47,9 +47,7 @@ public class Main {
                     i += 1;
                 }
                 System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp);
-                break;
             }
-            break;
         }
     }
 
