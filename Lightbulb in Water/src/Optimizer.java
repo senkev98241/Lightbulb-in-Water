@@ -8,7 +8,7 @@ public class Optimizer implements Runnable {
     private double endBeta;
 
     static ArrayList<Double> tempVtime = new ArrayList<Double>();
-    static ArrayList<Double> data = Main.data;
+    static ArrayList<Double> data = Data.data;
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
 
     public Optimizer(double recInitAlpha, double recEndAlpha, double recInitBeta, double recEndBeta) {
