@@ -10,9 +10,9 @@ public class Statistics {
 
     // private ArrayList<Double> data = new ArrayList<Double>(60); // Not used?
     
-    public Statistics() {
-        ;
-    }
+    // public Statistics() {
+    //     ;
+    // }
 
     public Statistics(double alpha, double beta, double sumRSquare) { //, ArrayList<Double> data) {
         this.alpha = alpha;
