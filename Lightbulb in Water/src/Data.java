@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 
 
 public class Data {
-    static ArrayList<Double> data = Main.data;
+    public static ArrayList<Double> data = Data.extractData();
     // public static void main(String[] args) {
     //     String csvFile = "TempvWater.csv"; // Replace with the path to your CSV file
     //     ArrayList<String> stringList = readCSVToStringList(csvFile);
