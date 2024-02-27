@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 
 public class Main {
-    private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
+    // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     static ArrayList<Double> tempVtime = new ArrayList<Double>();
     static ArrayList<Double> data = new ArrayList<Double>(62);
     public static void main(String[] args) throws Exception {
         data = Data.extractData();
+        
+        if (1 == 0) {
+        // Start move to optimizier
         for (int i = 0; i <= 61; i += 1) {
             tempVtime.add(0.0);
         }
@@ -61,12 +64,14 @@ public class Main {
                 // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp);
                 // System.out.println(sumRSquare);
                 // statistics.add(new Statistics(alpha, beta, sumRSquare));
-                break;
+                // break;
             } 
-            break;
+            // break;
         }
+        // End mvoe to optimizer
+        }
+    
     }
-
     // Comment out later Moved to multithreadable interface
     static double diffFunc(double alpha, double beta, double temp) {
         final double MASSBEAKER = 0.11851; // Mass of beaker (kg)

@@ -1,9 +1,13 @@
 // import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 public class Statistics {
     private double alpha;
     private double beta;
     private double sumRSquare;
+    public static ArrayList<Statistics> statistics = new ArrayList<Statistics>();
+
     // private ArrayList<Double> data = new ArrayList<Double>(60); // Not used?
     
     public Statistics() {
