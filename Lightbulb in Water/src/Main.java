@@ -4,7 +4,38 @@ public class Main {
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     static ArrayList<Double> tempVtime = new ArrayList<Double>();
     public static void main(String[] args) throws Exception {
-    
+        final double STARTBETA = 0.00000000001;
+        final double ENDBETA = 0.000000001;
+        
+        // Create optimizer classes
+        Optimizer optimizerOne = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerTwo = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerThree = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerFour = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerFive = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerSix = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerSeven = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerEight = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        
+        // Create threads
+        Thread threadOne = new Thread(optimizerOne);
+        Thread threadTwo = new Thread(optimizerTwo);
+        Thread threadThree = new Thread(optimizerThree);
+        Thread threadFour = new Thread(optimizerFour);
+        Thread threadFive = new Thread(optimizerFive);
+        Thread threadSix = new Thread(optimizerSix);
+        Thread threadSeven = new Thread(optimizerSeven);
+        Thread threadEight = new Thread(optimizerEight);
+
+        // Run the threads!!!
+        optimizerOne.run();
+        optimizerTwo.run();
+        optimizerThree.run();
+        optimizerFour.run();
+        optimizerFive.run();
+        optimizerSix.run();
+        optimizerSeven.run();
+        optimizerEight.run();
     }
     // Comment out later Moved to multithreadable interface
     static double diffFunc(double alpha, double beta, double temp) {

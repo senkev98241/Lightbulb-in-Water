@@ -34,7 +34,7 @@ public class Optimizer implements Runnable {
         for (beta = initBeta; beta <= endBeta; beta += 0.00000000001) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
             
             // Optimization of arbitrary coefficient for conduction Alpha
-            for (alpha = initAlpha; alpha <= endAlpha; alpha += 0.001) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
+            for (alpha = initAlpha; alpha <= endAlpha - 0.001/4.0 /* To control for strange increases */; alpha += 0.001) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
                 double sumTemp = INITTEMP; // Initialize starting tempterature
                 double deltaTemp = 0; // For first instance only at zero
