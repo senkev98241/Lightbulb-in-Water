@@ -23,8 +23,8 @@ public class Optimizer implements Runnable {
             tempVtime.add(0.0);
         }
 
-        double alpha = 0;
-        double beta = 0;
+        double alpha = this.initAlpha;
+        double beta = this.initBeta;
         double sumRSquare = 0;
         double deltaTime = 1;
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
@@ -71,7 +71,7 @@ public class Optimizer implements Runnable {
                     sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
                     i += 1;
                 }
-                // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp);
+                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
                 // System.out.println(sumRSquare);
                 Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare));
                 // break;

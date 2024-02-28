@@ -9,13 +9,13 @@ public class Main {
         
         // Create optimizer classes
         Optimizer optimizerOne = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
-        Optimizer optimizerTwo = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
-        Optimizer optimizerThree = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
-        Optimizer optimizerFour = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
-        Optimizer optimizerFive = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
-        Optimizer optimizerSix = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
-        Optimizer optimizerSeven = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
-        Optimizer optimizerEight = new Optimizer(0.20, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerTwo = new Optimizer(0.22, 0.24, STARTBETA, ENDBETA);
+        Optimizer optimizerThree = new Optimizer(0.24, 0.26, STARTBETA, ENDBETA);
+        Optimizer optimizerFour = new Optimizer(0.26, 0.28, STARTBETA, ENDBETA);
+        Optimizer optimizerFive = new Optimizer(0.28, 0.30, STARTBETA, ENDBETA);
+        Optimizer optimizerSix = new Optimizer(0.30, 0.32, STARTBETA, ENDBETA);
+        Optimizer optimizerSeven = new Optimizer(0.32, 0.34, STARTBETA, ENDBETA);
+        Optimizer optimizerEight = new Optimizer(0.34, 0.36, STARTBETA, ENDBETA);
         
         // Create threads
         Thread threadOne = new Thread(optimizerOne);
@@ -28,14 +28,14 @@ public class Main {
         Thread threadEight = new Thread(optimizerEight);
 
         // Run the threads!!!
-        optimizerOne.run();
-        optimizerTwo.run();
-        optimizerThree.run();
-        optimizerFour.run();
-        optimizerFive.run();
-        optimizerSix.run();
-        optimizerSeven.run();
-        optimizerEight.run();
+        threadOne.start();
+        threadTwo.start();
+        threadThree.start();
+        threadFour.start();
+        threadFive.start();
+        threadSix.start();
+        threadSeven.start();
+        threadEight.start();
     }
     // Comment out later Moved to multithreadable interface
     static double diffFunc(double alpha, double beta, double temp) {
