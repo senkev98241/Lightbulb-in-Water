@@ -15,7 +15,7 @@ public class Optimizer implements Runnable {
         this.initAlpha = recInitAlpha;
         this.endAlpha = recEndAlpha;
         this.initBeta = recInitBeta;
-        this.endBeta = recEndAlpha;
+        this.endBeta = recEndBeta;
     }
 
     public void run() {
@@ -31,14 +31,14 @@ public class Optimizer implements Runnable {
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
         
         // Optimization of arbitary coefficient for radiation Beta
-        for (beta = initBeta; beta <= endBeta; beta += 0.00000000001) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
+        for (beta = initBeta; beta <= endBeta; beta += 0.00000000001 /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
             
             // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = initAlpha; alpha <= endAlpha - 0.001/4.0 /* To control for strange increases */; alpha += 0.001) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
                 double sumTemp = INITTEMP; // Initialize starting tempterature
                 double deltaTemp = 0; // For first instance only at zero
-                double prevDelta; // Prepare for adjustments needed to trapezoidal
+                double prevDelta; // Prepare for adjustments needed sto trapezoidal
                 // alpha = 0;
 
                 // Perform trapezoid reimann sum
@@ -71,7 +71,7 @@ public class Optimizer implements Runnable {
                     sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
                     i += 1;
                 }
-                // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
+                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
                 // System.out.println(sumRSquare);
                 Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare));
                 // break;

@@ -1,21 +1,22 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Main {
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     static ArrayList<Double> tempVtime = new ArrayList<Double>();
     public static void main(String[] args) throws Exception {
         final double STARTBETA = 0.00000000001;
-        final double ENDBETA = 0.000000001;
+        final double ENDBETA = 0.000000001; // Should be 10^-9
         
         // Create optimizer classes
-        Optimizer optimizerOne = new Optimizer(0.20, 0.215, STARTBETA, ENDBETA);
-        Optimizer optimizerTwo = new Optimizer(0.215, 0.23, STARTBETA, ENDBETA);
-        Optimizer optimizerThree = new Optimizer(0.23, 0.245, STARTBETA, ENDBETA);
-        Optimizer optimizerFour = new Optimizer(0.245, 0.26, STARTBETA, ENDBETA);
-        Optimizer optimizerFive = new Optimizer(0.26, 0.275, STARTBETA, ENDBETA);
-        Optimizer optimizerSix = new Optimizer(0.275, 0.29, STARTBETA, ENDBETA);
-        Optimizer optimizerSeven = new Optimizer(0.29, 0.315, STARTBETA, ENDBETA);
-        Optimizer optimizerEight = new Optimizer(0.315, 0.33, STARTBETA, ENDBETA);
+        Optimizer optimizerOne = new Optimizer(0.20, 0.201, STARTBETA, ENDBETA);
+        Optimizer optimizerTwo = new Optimizer(0.201, 0.202, STARTBETA, ENDBETA);
+        Optimizer optimizerThree = new Optimizer(0.202, 0.203, STARTBETA, ENDBETA);
+        Optimizer optimizerFour = new Optimizer(0.203, 0.204, STARTBETA, ENDBETA);
+        Optimizer optimizerFive = new Optimizer(0.204, 0.205, STARTBETA, ENDBETA);
+        Optimizer optimizerSix = new Optimizer(0.205, 0.206, STARTBETA, ENDBETA);
+        Optimizer optimizerSeven = new Optimizer(0.206, 0.207, STARTBETA, ENDBETA);
+        Optimizer optimizerEight = new Optimizer(0.207, 0.208, STARTBETA, ENDBETA);
         
         // Create threads
         Thread threadOne = new Thread(optimizerOne);
@@ -48,22 +49,28 @@ public class Main {
         threadEight.join();
 
         System.out.println("There are " + Statistics.statistics.size() + "In this goddamn arraylist");
+
+        // Find the minimum sumRSquare value
+        double minSumRSquare = findMinSumRSquare(Statistics.statistics);
+
+        // Find the index of the minimum sumRSquare value
+        // int minIndex = Statistics.statistics.indexOf(0, 0, minSumRSquare);
+        // System.out.println("In index " + minIndex);
     }
-    // Comment out later Moved to multithreadable interface
-    static double diffFunc(double alpha, double beta, double temp) {
-        final double MASSBEAKER = 0.11851; // Mass of beaker (kg)
-        final short HEATCAPBEAKER = 830; // Heat Capacity of Beaker
-        final double HEATWATER = 0.09979; // Mass of water initially (kg)
-        final short HEATCAPWATER = 4186; // Heat Capacity of Water
 
-        final double PHO = Math.pow(MASSBEAKER * HEATCAPBEAKER + HEATWATER * HEATCAPWATER, -1);
+    public static double findMinSumRSquare(ArrayList<Statistics> statsList) {
+        if (statsList.isEmpty()) {
+            throw new IllegalArgumentException("The list is empty.");
+        }
 
-        final byte VOLT = 10;
-        final double RESIST = 10.8;
-        final double OUTSIDE = 294.95;
+        // Initialize with the first value
+        double minSumRSquare = statsList.get(0).getSumRSquare();
 
-        // (1 / PHO) * (wattage - (alpha * conduction + beta * radiation) )
-        double value = PHO * ( (Math.pow(VOLT, 2) / RESIST) - (alpha * (temp - OUTSIDE) + beta * (Math.pow(temp, 4) - Math.pow(OUTSIDE, 4) ) ) );
-        return value;
+        // Compare with the rest of the values
+        for (Statistics stat : statsList) {
+            minSumRSquare = Math.min(minSumRSquare, stat.getSumRSquare());
+        }
+        // int minIndex = statsList.indexOf(new Statistics(0, 0, minSumRSquare));
+        return minSumRSquare;
     }
 }
