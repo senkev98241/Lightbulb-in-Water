@@ -71,7 +71,7 @@ public class Optimizer implements Runnable {
                     sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
                     i += 1;
                 }
-                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
+                // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
                 // System.out.println(sumRSquare);
                 Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare));
                 // break;
