@@ -52,7 +52,7 @@ public class Main {
         threadSeven.join();
         threadEight.join();
 
-        System.out.println("There are " + Statistics.statistics.size() + "In this goddamn arraylist");
+        System.out.println("There are " + Statistics.statistics.size() + " in this goddamn arraylist");
 
         makeCSV();
         // Find the minimum sumRSquare value

@@ -30,11 +30,13 @@ public class Optimizer implements Runnable {
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
         
+        double deltaBeta = 0.00000000001;
         // Optimization of arbitary coefficient for radiation Beta
-        for (beta = initBeta; beta <= endBeta; beta += 0.00000000001 /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
+        for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
             
+            double deltaAlpha = 0.001;
             // Optimization of arbitrary coefficient for conduction Alpha
-            for (alpha = initAlpha; alpha <= endAlpha - 0.001/4.0 /* To control for strange increases */; alpha += 0.0001) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
+            for (alpha = initAlpha; alpha <= endAlpha + deltaAlpha / 2; alpha += deltaAlpha) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
                 double sumTemp = INITTEMP; // Initialize starting tempterature
                 double deltaTemp = 0; // For first instance only at zero
@@ -42,7 +44,7 @@ public class Optimizer implements Runnable {
                 // alpha = 0;
 
                 // Perform trapezoid reimann sum
-                for (double time = 0; time <= SUBINT + deltaTime/2.0 ; time += deltaTime) {
+                for (double time = 0; time <= SUBINT + deltaTime / 2; time += deltaTime) {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         tempVtime.set( (int) (time / 60), sumTemp); // Set minute data
