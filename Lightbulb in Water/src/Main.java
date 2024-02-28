@@ -13,14 +13,14 @@ public class Main {
         final double ENDBETA = 0.000000001; // Should be 10^-9
         
         // Create optimizer classes
-        Optimizer optimizerOne = new Optimizer(0.20, 0.201, STARTBETA, ENDBETA);
-        Optimizer optimizerTwo = new Optimizer(0.201, 0.202, STARTBETA, ENDBETA);
-        Optimizer optimizerThree = new Optimizer(0.202, 0.203, STARTBETA, ENDBETA);
-        Optimizer optimizerFour = new Optimizer(0.203, 0.204, STARTBETA, ENDBETA);
-        Optimizer optimizerFive = new Optimizer(0.204, 0.205, STARTBETA, ENDBETA);
-        Optimizer optimizerSix = new Optimizer(0.205, 0.206, STARTBETA, ENDBETA);
-        Optimizer optimizerSeven = new Optimizer(0.206, 0.207, STARTBETA, ENDBETA);
-        Optimizer optimizerEight = new Optimizer(0.207, 0.208, STARTBETA, ENDBETA);
+        Optimizer optimizerOne = new Optimizer(0.20, 0.215, STARTBETA, ENDBETA);
+        Optimizer optimizerTwo = new Optimizer(0.215, 0.23, STARTBETA, ENDBETA);
+        Optimizer optimizerThree = new Optimizer(0.23, 0.245, STARTBETA, ENDBETA);
+        Optimizer optimizerFour = new Optimizer(0.245, 0.26, STARTBETA, ENDBETA);
+        Optimizer optimizerFive = new Optimizer(0.26, 0.275, STARTBETA, ENDBETA);
+        Optimizer optimizerSix = new Optimizer(0.275, 0.29, STARTBETA, ENDBETA);
+        Optimizer optimizerSeven = new Optimizer(0.29, 0.315, STARTBETA, ENDBETA);
+        Optimizer optimizerEight = new Optimizer(0.315, 0.33, STARTBETA, ENDBETA);
         
         // Create threads
         Thread threadOne = new Thread(optimizerOne);
@@ -71,7 +71,6 @@ public class Main {
             bw.newLine();
             bw.write(Statistics.statistics.get(i).getAlpha() + "," + Statistics.statistics.get(i).getBeta() + "," + Statistics.statistics.get(i).getSumRSquare());
         }
-        
         bw.close();
         fw.close();
     }
