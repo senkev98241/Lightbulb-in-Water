@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -50,6 +54,7 @@ public class Main {
 
         System.out.println("There are " + Statistics.statistics.size() + "In this goddamn arraylist");
 
+        makeCSV();
         // Find the minimum sumRSquare value
         double minSumRSquare = findMinSumRSquare(Statistics.statistics);
 
@@ -57,7 +62,19 @@ public class Main {
         // int minIndex = Statistics.statistics.indexOf(0, 0, minSumRSquare);
         // System.out.println("In index " + minIndex);
     }
-
+    static void makeCSV() throws IOException {
+        File file = new File("Lightbulb in Water\\src\\Statistics.csv");
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write("Alpha,Beta,SumResidualSquare");
+        for (int i = 0; i < Statistics.statistics.size(); i++) {
+            bw.newLine();
+            bw.write(Statistics.statistics.get(i).getAlpha() + "," + Statistics.statistics.get(i).getBeta() + "," + Statistics.statistics.get(i).getSumRSquare());
+        }
+        
+        bw.close();
+        fw.close();
+    }
     public static double findMinSumRSquare(ArrayList<Statistics> statsList) {
         if (statsList.isEmpty()) {
             throw new IllegalArgumentException("The list is empty.");
