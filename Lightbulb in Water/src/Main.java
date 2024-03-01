@@ -66,10 +66,10 @@ public class Main {
         File file = new File("Lightbulb in Water\\src\\Statistics.csv");
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write("Alpha,Beta,SumResidualSquare");
+        bw.write("Alpha,Beta,SumResidualSquare,Method");
         for (int i = 0; i < Statistics.statistics.size(); i++) {
             bw.newLine();
-            bw.write(Statistics.statistics.get(i).getAlpha() + "," + Statistics.statistics.get(i).getBeta() + "," + Statistics.statistics.get(i).getSumRSquare());
+            bw.write(Statistics.statistics.get(i).getAlpha() + "," + Statistics.statistics.get(i).getBeta() + "," + Statistics.statistics.get(i).getSumRSquare() + "," + Statistics.statistics.get(i).getMethod());
         }
         bw.close();
         fw.close();

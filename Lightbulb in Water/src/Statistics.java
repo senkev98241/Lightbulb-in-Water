@@ -6,6 +6,7 @@ public class Statistics {
     private double alpha;
     private double beta;
     private double sumRSquare;
+    private String method;
     public static ArrayList<Statistics> statistics = new ArrayList<Statistics>();
 
     // private ArrayList<Double> data = new ArrayList<Double>(60); // Not used?
@@ -14,10 +15,11 @@ public class Statistics {
     //     ;
     // }
 
-    public Statistics(double alpha, double beta, double sumRSquare) { //, ArrayList<Double> data) {
+    public Statistics(double alpha, double beta, double sumRSquare, String method) { //, ArrayList<Double> data) {
         this.alpha = alpha;
         this.beta = beta;
         this.sumRSquare = sumRSquare;
+        this.method = method;
     }
 
     public double getAlpha() {
@@ -42,6 +44,14 @@ public class Statistics {
 
     public void setSumRSquare(double sumRSquare) {
         this.sumRSquare = sumRSquare;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     // Unused?
