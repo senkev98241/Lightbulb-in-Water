@@ -18,7 +18,10 @@ public class Optimizer implements Runnable {
         this.endBeta = recEndBeta;
     }
     public void run() {
-
+        pseudoTrapezoid();
+        midEuler();
+        rungKuttaOrderTwo();
+        rungKuttaOrderFour();
     }
     
     public void pseudoTrapezoid() {
@@ -78,7 +81,7 @@ public class Optimizer implements Runnable {
                 }
                 System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
                 // System.out.println(sumRSquare);
-                Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "PsedoTrapez"));
+                Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "pseudoTrapezoid"));
                 // break;
             } 
             // break;
@@ -97,11 +100,11 @@ public class Optimizer implements Runnable {
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
         
-        double deltaBeta = 0.00000000001;
+        double deltaBeta = 0.0000000000000001; // 16 decimal percision
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
             
-            double deltaAlpha = 0.001;
+            double deltaAlpha = 0.0000001; // 7 decimal percision
             // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = initAlpha; alpha <= endAlpha + deltaAlpha / 2; alpha += deltaAlpha) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
@@ -283,21 +286,4 @@ public class Optimizer implements Runnable {
             // break;
         }
     }
-    // Moved to won class
-    // static double diffFunc(double alpha, double beta, double temp) {
-    //     final double MASSBEAKER = 0.11851; // Mass of beaker (kg)
-    //     final short HEATCAPBEAKER = 830; // Heat Capacity of Beaker
-    //     final double HEATWATER = 0.09979; // Mass of water initially (kg)
-    //     final short HEATCAPWATER = 4186; // Heat Capacity of Water
-
-    //     final double PHO = Math.pow(MASSBEAKER * HEATCAPBEAKER + HEATWATER * HEATCAPWATER, -1);
-
-    //     final byte VOLT = 10;
-    //     final double RESIST = 10.8;
-    //     final double OUTSIDE = 294.95;
-
-    //     // (1 / PHO) * (wattage - (alpha * conduction + beta * radiation) )
-    //     double value = PHO * ( (Math.pow(VOLT, 2) / RESIST) - (alpha * (temp - OUTSIDE) + beta * (Math.pow(temp, 4) - Math.pow(OUTSIDE, 4) ) ) );
-    //     return value;
-    // }
 }
