@@ -10,6 +10,8 @@ public class Optimizer implements Runnable {
     static ArrayList<Double> tempVtime = new ArrayList<Double>();
     static ArrayList<Double> data = Data.data;
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
+    
+    private double deltaAlpha = 0.0000001;
 
     public Optimizer(double recInitAlpha, double recEndAlpha, double recInitBeta, double recEndBeta) {
         this.initAlpha = recInitAlpha;
@@ -18,20 +20,25 @@ public class Optimizer implements Runnable {
         this.endBeta = recEndBeta;
     }
     public void run() {
+        resetTempVTimeList();
         pseudoTrapezoid();
         midEuler();
         rungKuttaOrderTwo();
         rungKuttaOrderFour();
     }
     
-    public void pseudoTrapezoid() {
+    private void resetTempVTimeList() {
+        tempVtime.clear();
         for (int i = 0; i <= 61; i += 1) {
             tempVtime.add(0.0);
         }
-
+    }
+    public void pseudoTrapezoid() {
+        resetTempVTimeList();
         double alpha = this.initAlpha;
         double beta = this.initBeta;
         double sumRSquare = 0;
+        double prevSumR2 = Double.MAX_VALUE;
         double deltaTime = 1;
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
@@ -39,8 +46,7 @@ public class Optimizer implements Runnable {
         double deltaBeta = 0.00000000001;
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
-            
-            double deltaAlpha = 0.001;
+
             // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = initAlpha; alpha <= endAlpha + deltaAlpha / 2; alpha += deltaAlpha) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
@@ -68,9 +74,12 @@ public class Optimizer implements Runnable {
                     sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
                     i += 1;
                 }
-                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
+                // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
                 // System.out.println(sumRSquare);
-                Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "pseudoTrapezoid"));
+                if (sumRSquare < prevSumR2) {
+                    Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "pseudoTrapezoid"));
+                    prevSumR2 = sumRSquare;
+                }
                 // break;
             } 
             // break;
@@ -78,13 +87,12 @@ public class Optimizer implements Runnable {
     }
 
     public void midEuler() {
-        for (int i = 0; i <= 61; i += 1) {
-            tempVtime.add(0.0);
-        }
+        resetTempVTimeList();
 
         double alpha = this.initAlpha;
         double beta = this.initBeta;
         double sumRSquare = 0;
+        double prevSumR2 = Double.MAX_VALUE;
         double deltaTime = 1;
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
@@ -121,9 +129,13 @@ public class Optimizer implements Runnable {
                     sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
                     i += 1;
                 }
-                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
+                // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
                 // System.out.println(sumRSquare);
-                Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "Midpoint Euler"));
+                
+                if (sumRSquare < prevSumR2) {
+                    Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "Midpoint Euler"));
+                    prevSumR2 = sumRSquare;
+                }
                 // break;
             } 
             // break;
@@ -131,13 +143,12 @@ public class Optimizer implements Runnable {
     }
 
     public void rungKuttaOrderTwo() {
-        for (int i = 0; i <= 61; i += 1) {
-            tempVtime.add(0.0);
-        }
+        resetTempVTimeList();
 
         double alpha = this.initAlpha;
         double beta = this.initBeta;
         double sumRSquare = 0;
+        double prevSumR2 = Double.MAX_VALUE;
         double deltaTime = 1;
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
@@ -176,9 +187,13 @@ public class Optimizer implements Runnable {
                     sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
                     i += 1;
                 }
-                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
+                // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
                 // System.out.println(sumRSquare);
-                Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "2ndOrderRungeKutta"));
+                
+                if (sumRSquare < prevSumR2) {
+                    Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "2ndOrderRungeKutta"));
+                    prevSumR2 = sumRSquare;
+                }
                 // break;
             } 
             // break;
@@ -186,13 +201,12 @@ public class Optimizer implements Runnable {
     }
 
     public void rungKuttaOrderFour() {
-        for (int i = 0; i <= 61; i += 1) {
-            tempVtime.add(0.0);
-        }
+        resetTempVTimeList();
 
         double alpha = this.initAlpha;
         double beta = this.initBeta;
         double sumRSquare = 0;
+        double prevSumR2 = Double.MAX_VALUE;
         double deltaTime = 1;
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
@@ -231,9 +245,13 @@ public class Optimizer implements Runnable {
                     sumRSquare += Math.pow(dataPoint - tempVtime.get(i), 2);
                     i += 1;
                 }
-                System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
+                // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t sumTemp is " + sumTemp + "\t sumR is " + sumRSquare);
                 // System.out.println(sumRSquare);
-                Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "4thOrderRungeKutta"));
+                
+                if (sumRSquare < prevSumR2) {
+                    Statistics.statistics.add(new Statistics(alpha, beta, sumRSquare, "4thOrderRungeKutta"));
+                    prevSumR2 = sumRSquare;
+                }
                 // break;
             } 
             // break;
