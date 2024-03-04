@@ -100,8 +100,7 @@ public class Optimizer implements Runnable {
 
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
-            
-            double deltaAlpha = 0.0000001; // 7 decimal percision
+
             // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = initAlpha; alpha <= endAlpha + deltaAlpha / 2; alpha += deltaAlpha) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
@@ -156,8 +155,7 @@ public class Optimizer implements Runnable {
 
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
-            
-            double deltaAlpha = 0.001;
+
             // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = initAlpha; alpha <= endAlpha + deltaAlpha / 2; alpha += deltaAlpha) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
@@ -214,8 +212,7 @@ public class Optimizer implements Runnable {
 
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
-            
-            double deltaAlpha = 0.001;
+
             // Optimization of arbitrary coefficient for conduction Alpha
             for (alpha = initAlpha; alpha <= endAlpha + deltaAlpha / 2; alpha += deltaAlpha) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
