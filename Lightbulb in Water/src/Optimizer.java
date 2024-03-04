@@ -22,9 +22,9 @@ public class Optimizer implements Runnable {
     }
     public void run() {
         resetTempVTimeList();
-        pseudoTrapezoid();
-        midEuler();
-        rungKuttaOrderTwo();
+        // pseudoTrapezoid();
+        // midEuler();
+        // rungKuttaOrderTwo();
         rungKuttaOrderFour();
     }
     
