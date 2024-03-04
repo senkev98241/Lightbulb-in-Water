@@ -13,30 +13,30 @@ public class Main {
         final double ENDBETA = 0.0000001; // End at 10^-9
         
         // Create optimizer classes
-        Optimizer optimizerOne = new Optimizer(0.20, 0.206, STARTBETA, ENDBETA);
-        Optimizer optimizerTwo = new Optimizer(0.206, 0.212, STARTBETA, ENDBETA);
-        Optimizer optimizerThree = new Optimizer(0.212, 0.218, STARTBETA, ENDBETA);
-        Optimizer optimizerFour = new Optimizer(0.218, 0.224, STARTBETA, ENDBETA);
-        Optimizer optimizerFive = new Optimizer(0.224, 0.230, STARTBETA, ENDBETA);
-        Optimizer optimizerSix = new Optimizer(0.230, 0.236, STARTBETA, ENDBETA);
-        Optimizer optimizerSeven = new Optimizer(0.236, 0.242, STARTBETA, ENDBETA);
-        Optimizer optimizerEight = new Optimizer(0.242, 0.248, STARTBETA, ENDBETA);
-        Optimizer optimizerNine = new Optimizer(0.248, 0.254, STARTBETA, ENDBETA);
-        Optimizer optimizerTen = new Optimizer(0.254, 0.26, STARTBETA, ENDBETA);
-        Optimizer optimizerEleven = new Optimizer(0.26, 0.266, STARTBETA, ENDBETA);
-        Optimizer optimizerTwelve = new Optimizer(0.266, 0.272, STARTBETA, ENDBETA);
-        Optimizer optimizerThirteen = new Optimizer(0.272, 0.278, STARTBETA, ENDBETA);
-        Optimizer optimizerFourteen = new Optimizer(0.278, 0.284, STARTBETA, ENDBETA);
-        Optimizer optimizerFifteen = new Optimizer(0.284, 0.29, STARTBETA, ENDBETA);
-        Optimizer optimizerSixteen = new Optimizer(0.29, 0.296, STARTBETA, ENDBETA);
-        Optimizer optimizerSeventeen = new Optimizer(0.296, 0.302, STARTBETA, ENDBETA);
-        Optimizer optimizerEighteen = new Optimizer(0.302, 0.308, STARTBETA, ENDBETA);
-        Optimizer optimizerNineteen = new Optimizer(0.308, 0.314, STARTBETA, ENDBETA);
-        Optimizer optimizerTwenty = new Optimizer(0.314, 0.32, STARTBETA, ENDBETA);
-        Optimizer optimizerTwentyOne = new Optimizer(0.32, 0.326, STARTBETA, ENDBETA);
-        Optimizer optimizerTwentyTwo = new Optimizer(0.326, 0.332, STARTBETA, ENDBETA);
-        Optimizer optimizerTwentyThree = new Optimizer(0.332, 0.338, STARTBETA, ENDBETA);
-        Optimizer optimizerTwentyFour = new Optimizer(0.338, 0.344, STARTBETA, ENDBETA);
+        Optimizer optimizerOne = new Optimizer(0.20, 0.21, STARTBETA, ENDBETA);
+        Optimizer optimizerTwo = new Optimizer(0.21, 0.22, STARTBETA, ENDBETA);
+        Optimizer optimizerThree = new Optimizer(0.22, 0.238, STARTBETA, ENDBETA);
+        Optimizer optimizerFour = new Optimizer(0.23, 0.24, STARTBETA, ENDBETA);
+        Optimizer optimizerFive = new Optimizer(0.24, 0.25, STARTBETA, ENDBETA);
+        Optimizer optimizerSix = new Optimizer(0.25, 0.26, STARTBETA, ENDBETA);
+        Optimizer optimizerSeven = new Optimizer(0.26, 0.27, STARTBETA, ENDBETA);
+        Optimizer optimizerEight = new Optimizer(0.27, 0.28, STARTBETA, ENDBETA);
+        Optimizer optimizerNine = new Optimizer(0.28, 0.29, STARTBETA, ENDBETA);
+        Optimizer optimizerTen = new Optimizer(0.29, 0.30, STARTBETA, ENDBETA);
+        Optimizer optimizerEleven = new Optimizer(0.30, 0.31, STARTBETA, ENDBETA);
+        Optimizer optimizerTwelve = new Optimizer(0.31, 0.32, STARTBETA, ENDBETA);
+        Optimizer optimizerThirteen = new Optimizer(0.32, 0.33, STARTBETA, ENDBETA);
+        Optimizer optimizerFourteen = new Optimizer(0.33, 0.34, STARTBETA, ENDBETA);
+        Optimizer optimizerFifteen = new Optimizer(0.34, 0.35, STARTBETA, ENDBETA);
+        Optimizer optimizerSixteen = new Optimizer(0.35, 0.36, STARTBETA, ENDBETA);
+        // Optimizer optimizerSeventeen = new Optimizer(0.296, 0.302, STARTBETA, ENDBETA);
+        // Optimizer optimizerEighteen = new Optimizer(0.302, 0.308, STARTBETA, ENDBETA);
+        // Optimizer optimizerNineteen = new Optimizer(0.308, 0.314, STARTBETA, ENDBETA);
+        // Optimizer optimizerTwenty = new Optimizer(0.314, 0.32, STARTBETA, ENDBETA);
+        // Optimizer optimizerTwentyOne = new Optimizer(0.32, 0.326, STARTBETA, ENDBETA);
+        // Optimizer optimizerTwentyTwo = new Optimizer(0.326, 0.332, STARTBETA, ENDBETA);
+        // Optimizer optimizerTwentyThree = new Optimizer(0.332, 0.338, STARTBETA, ENDBETA);
+        // Optimizer optimizerTwentyFour = new Optimizer(0.338, 0.344, STARTBETA, ENDBETA);
         
         // Create threads
         Thread threadOne = new Thread(optimizerOne);
@@ -55,14 +55,14 @@ public class Main {
         Thread threadFourteen = new Thread(optimizerFourteen);
         Thread threadFifteen = new Thread(optimizerFifteen);
         Thread threadSixteen = new Thread(optimizerSixteen);
-        Thread threadSeventeen = new Thread(optimizerSeventeen);
-        Thread threadEighteen = new Thread(optimizerEighteen);
-        Thread threadNineteen = new Thread(optimizerNineteen);
-        Thread threadTwenty = new Thread(optimizerTwenty);
-        Thread threadTwentyOne = new Thread(optimizerTwentyOne);
-        Thread threadTwentyTwo = new Thread(optimizerTwentyTwo);
-        Thread threadTwentyThree = new Thread(optimizerTwentyThree);
-        Thread threadTwentyFour = new Thread(optimizerTwentyFour);
+        // Thread threadSeventeen = new Thread(optimizerSeventeen);
+        // Thread threadEighteen = new Thread(optimizerEighteen);
+        // Thread threadNineteen = new Thread(optimizerNineteen);
+        // Thread threadTwenty = new Thread(optimizerTwenty);
+        // Thread threadTwentyOne = new Thread(optimizerTwentyOne);
+        // Thread threadTwentyTwo = new Thread(optimizerTwentyTwo);
+        // Thread threadTwentyThree = new Thread(optimizerTwentyThree);
+        // Thread threadTwentyFour = new Thread(optimizerTwentyFour);
 
         // Run the threads!!!
         threadOne.start();
@@ -81,14 +81,14 @@ public class Main {
         threadFourteen.start();
         threadFifteen.start();
         threadSixteen.start();
-        threadSeventeen.start();
-        threadEighteen.start();
-        threadNineteen.start();
-        threadTwenty.start();
-        threadTwentyOne.start();
-        threadTwentyTwo.start();
-        threadTwentyThree.start();
-        threadTwentyFour.start();
+        // threadSeventeen.start();
+        // threadEighteen.start();
+        // threadNineteen.start();
+        // threadTwenty.start();
+        // threadTwentyOne.start();
+        // threadTwentyTwo.start();
+        // threadTwentyThree.start();
+        // threadTwentyFour.start();
 
         // Wait for threads to die!!!
         threadOne.join();
@@ -107,14 +107,14 @@ public class Main {
         threadFourteen.join();
         threadFifteen.join();
         threadSixteen.join();
-        threadSeventeen.join();
-        threadEighteen.join();
-        threadNineteen.join();
-        threadTwenty.join();
-        threadTwentyOne.join();
-        threadTwentyTwo.join();
-        threadTwentyThree.join();
-        threadTwentyFour.join();
+        // threadSeventeen.join();
+        // threadEighteen.join();
+        // threadNineteen.join();
+        // threadTwenty.join();
+        // threadTwentyOne.join();
+        // threadTwentyTwo.join();
+        // threadTwentyThree.join();
+        // threadTwentyFour.join();
 
         System.out.println("There are " + Statistics.statistics.size() + " in this goddamn arraylist");
 
