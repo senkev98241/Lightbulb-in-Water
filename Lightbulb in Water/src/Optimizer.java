@@ -234,7 +234,7 @@ public class Optimizer implements Runnable {
                     double k_1 = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp));
                     double k_2 = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp + (deltaTime / 2.0) * k_1));
                     double k_3 = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp + (deltaTime / 2.0) * k_2));
-                    double k_4 = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp + deltaTime * k_3));
+                    double k_4 = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp + k_3));
                     double deltaRungeKutta = k_1 + k_2 + k_3 + k_4;
                     sumTemp = (sumTemp + deltaRungeKutta);
                 }
