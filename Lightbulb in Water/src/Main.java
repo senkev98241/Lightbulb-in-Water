@@ -9,7 +9,7 @@ public class Main {
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     static ArrayList<Double> tempVtime = new ArrayList<Double>();
     public static void main(String[] args) throws Exception {
-        final double STARTBETA = 0.00000000001; // Start at 10^-16
+        final double STARTBETA = 0.00000000001; // Start at 10^-11
         final double ENDBETA = 0.000000001; // End at 10^-9
         
         // Create optimizer classes
