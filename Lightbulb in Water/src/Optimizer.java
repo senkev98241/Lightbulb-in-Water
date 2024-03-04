@@ -7,11 +7,12 @@ public class Optimizer implements Runnable {
     private double initBeta;
     private double endBeta;
 
-    static ArrayList<Double> tempVtime = new ArrayList<Double>();
+    private ArrayList<Double> tempVtime = new ArrayList<Double>();
     static ArrayList<Double> data = Data.data;
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     
-    private double deltaAlpha = 0.0000001;
+    private double deltaAlpha = 0.01;
+    double deltaBeta = 0.00000000001;
 
     public Optimizer(double recInitAlpha, double recEndAlpha, double recInitBeta, double recEndBeta) {
         this.initAlpha = recInitAlpha;
@@ -43,7 +44,6 @@ public class Optimizer implements Runnable {
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
         
-        double deltaBeta = 0.00000000001;
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
 
@@ -83,6 +83,7 @@ public class Optimizer implements Runnable {
                 // break;
             } 
             // break;
+            System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t method is" + "pseudoTrapezoid");
         }
     }
 
@@ -96,8 +97,7 @@ public class Optimizer implements Runnable {
         double deltaTime = 1;
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
-        
-        double deltaBeta = 0.0000000000000001; // 16 decimal percision
+
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
             
@@ -139,6 +139,7 @@ public class Optimizer implements Runnable {
                 // break;
             } 
             // break;
+            System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t method is" + "Midpoint Euler");
         }
     }
 
@@ -152,8 +153,7 @@ public class Optimizer implements Runnable {
         double deltaTime = 1;
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
-        
-        double deltaBeta = 0.00000000001;
+
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
             
@@ -197,6 +197,7 @@ public class Optimizer implements Runnable {
                 // break;
             } 
             // break;
+            System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t method is" + "2nd Order");
         }
     }
 
@@ -210,8 +211,7 @@ public class Optimizer implements Runnable {
         double deltaTime = 1;
         final double SUBINT = 3660 * deltaTime; // For 3600 seconds
         final double INITTEMP = 294.65; // Initial water temp 294.65 K
-        
-        double deltaBeta = 0.00000000001;
+
         // Optimization of arbitary coefficient for radiation Beta
         for (beta = initBeta; beta <= endBeta + deltaBeta / (byte) 2; beta += deltaBeta /* Should be 10^-11 */) {// (beta = 0.0000000001; beta <= 0.000000001; beta += 0.00000000001 ) { // Increase percision to 16 decimals later
             
@@ -255,6 +255,7 @@ public class Optimizer implements Runnable {
                 // break;
             } 
             // break;
+            System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t method is" + "4th Order");
         }
     }
 }
