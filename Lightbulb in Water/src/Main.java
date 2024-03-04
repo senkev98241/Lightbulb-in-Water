@@ -47,22 +47,22 @@ public class Main {
         Thread threadSix = new Thread(optimizerSix);
         Thread threadSeven = new Thread(optimizerSeven);
         Thread threadEight = new Thread(optimizerEight);
-        Thread threadOne = new Thread(optimizerOne);
-        Thread threadTwo = new Thread(optimizerTwo);
-        Thread threadThree = new Thread(optimizerThree);
-        Thread threadFour = new Thread(optimizerFour);
-        Thread threadFive = new Thread(optimizerFive);
-        Thread threadSix = new Thread(optimizerSix);
-        Thread threadSeven = new Thread(optimizerSeven);
-        Thread threadEight = new Thread(optimizerEight);
-        Thread threadOne = new Thread(optimizerOne);
-        Thread threadTwo = new Thread(optimizerTwo);
-        Thread threadThree = new Thread(optimizerThree);
-        Thread threadFour = new Thread(optimizerFour);
-        Thread threadFive = new Thread(optimizerFive);
-        Thread threadSix = new Thread(optimizerSix);
-        Thread threadSeven = new Thread(optimizerSeven);
-        Thread threadEight = new Thread(optimizerEight);
+        Thread threadNine = new Thread(optimizerNine);
+        Thread threadTen = new Thread(optimizerTen);
+        Thread threadEleven = new Thread(optimizerEleven);
+        Thread threadTwelve = new Thread(optimizerTwelve);
+        Thread threadThirteen = new Thread(optimizerThirteen);
+        Thread threadFourteen = new Thread(optimizerFourteen);
+        Thread threadFifteen = new Thread(optimizerFifteen);
+        Thread threadSixteen = new Thread(optimizerSixteen);
+        Thread threadSeventeen = new Thread(optimizerSeventeen);
+        Thread threadEighteen = new Thread(optimizerEighteen);
+        Thread threadNineteen = new Thread(optimizerNineteen);
+        Thread threadTwenty = new Thread(optimizerTwenty);
+        Thread threadTwentyOne = new Thread(optimizerTwentyOne);
+        Thread threadTwentyTwo = new Thread(optimizerTwentyTwo);
+        Thread threadTwentyThree = new Thread(optimizerTwentyThree);
+        Thread threadTwentyFour = new Thread(optimizerTwentyFour);
 
         // Run the threads!!!
         threadOne.start();
@@ -73,22 +73,22 @@ public class Main {
         threadSix.start();
         threadSeven.start();
         threadEight.start();
-        threadOne.start();
-        threadTwo.start();
-        threadThree.start();
-        threadFour.start();
-        threadFive.start();
-        threadSix.start();
-        threadSeven.start();
-        threadEight.start();
-        threadOne.start();
-        threadTwo.start();
-        threadThree.start();
-        threadFour.start();
-        threadFive.start();
-        threadSix.start();
-        threadSeven.start();
-        threadEight.start();
+        threadNine.start();
+        threadTen.start();
+        threadEleven.start();
+        threadTwelve.start();
+        threadThirteen.start();
+        threadFourteen.start();
+        threadFifteen.start();
+        threadSixteen.start();
+        threadSeventeen.start();
+        threadEighteen.start();
+        threadNineteen.start();
+        threadTwenty.start();
+        threadTwentyOne.start();
+        threadTwentyTwo.start();
+        threadTwentyThree.start();
+        threadTwentyFour.start();
 
         // Wait for threads to die!!!
         threadOne.join();
@@ -99,33 +99,28 @@ public class Main {
         threadSix.join();
         threadSeven.join();
         threadEight.join();
-        threadOne.start();
-        threadTwo.start();
-        threadThree.start();
-        threadFour.start();
-        threadFive.start();
-        threadSix.start();
-        threadSeven.start();
-        threadEight.start();
-        threadOne.start();
-        threadTwo.start();
-        threadThree.start();
-        threadFour.start();
-        threadFive.start();
-        threadSix.start();
-        threadSeven.start();
-        threadEight.start();
+        threadNine.join();
+        threadTen.join();
+        threadEleven.join();
+        threadTwelve.join();
+        threadThirteen.join();
+        threadFourteen.join();
+        threadFifteen.join();
+        threadSixteen.join();
+        threadSeventeen.join();
+        threadEighteen.join();
+        threadNineteen.join();
+        threadTwenty.join();
+        threadTwentyOne.join();
+        threadTwentyTwo.join();
+        threadTwentyThree.join();
+        threadTwentyFour.join();
 
         System.out.println("There are " + Statistics.statistics.size() + " in this goddamn arraylist");
 
         makeCSV();
-        // Find the minimum sumRSquare value
-        double minSumRSquare = findMinSumRSquare(Statistics.statistics);
-
-        // Find the index of the minimum sumRSquare value
-        // int minIndex = Statistics.statistics.indexOf(0, 0, minSumRSquare);
-        // System.out.println("In index " + minIndex);
     }
+    
     static void makeCSV() throws IOException {
         File file = new File("Lightbulb in Water\\src\\Statistics.csv");
         FileWriter fw = new FileWriter(file);
@@ -137,20 +132,5 @@ public class Main {
         }
         bw.close();
         fw.close();
-    }
-    public static double findMinSumRSquare(ArrayList<Statistics> statsList) {
-        if (statsList.isEmpty()) {
-            throw new IllegalArgumentException("The list is empty.");
-        }
-
-        // Initialize with the first value
-        double minSumRSquare = statsList.get(0).getSumRSquare();
-
-        // Compare with the rest of the values
-        for (Statistics stat : statsList) {
-            minSumRSquare = Math.min(minSumRSquare, stat.getSumRSquare());
-        }
-        // int minIndex = statsList.indexOf(new Statistics(0, 0, minSumRSquare));
-        return minSumRSquare;
     }
 }

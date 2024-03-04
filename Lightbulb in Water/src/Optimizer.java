@@ -54,23 +54,12 @@ public class Optimizer implements Runnable {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         tempVtime.set( (int) (time / 60), sumTemp); // Set minute data
-                        
-                        // Debugging only
-                        // System.out.println("------------------");
-                        // System.out.println(tempVtime.get((int) (time / 60)));
-                        // System.out.println(tempVtime.indexOf(sumTemp));
                     }
                     
                     // Get lost deltaTemp, make new Delta temp, linear approximate
                     prevDelta = deltaTemp / 2.0 ; // Add lost deltaTemp to pseudotrapezoid
                     deltaTemp = (DiffFunc.diffFunc(alpha, beta, sumTemp + prevDelta)) * deltaTime; // Overestimated Trapezoidal Reimann
                     sumTemp = (sumTemp + prevDelta + sumTemp + prevDelta + deltaTemp) / 2.0; // Linear approzimation from trapezoidal reimann
-                    
-                    // Only to verify ending data
-                    if (time >= 3600) {
-                        // System.out.println(time);
-                        // System.out.println(sumTemp);
-                    }
                 }
 
                 sumRSquare = 0; // Reset sum of residuals rquared
@@ -118,23 +107,12 @@ public class Optimizer implements Runnable {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         tempVtime.set( (int) (time / 60), sumTemp); // Set minute data
-                        
-                        // Debugging only
-                        // System.out.println("------------------");
-                        // System.out.println(tempVtime.get((int) (time / 60)));
-                        // System.out.println(tempVtime.indexOf(sumTemp));
                     }
                     
                     // Get lost deltaTemp, make new Delta temp, linear approximate
                     preDelta = (DiffFunc.diffFunc(alpha, beta, sumTemp)) * deltaTime ; // Add lost deltaTemp to pseudotrapezoid
                     deltaTemp = preDelta / 2.0; // Overestimated Trapezoidal Reimann
                     sumTemp = (sumTemp + deltaTemp); // Linear approzimation from trapezoidal reimann
-                    
-                    // Only to verify ending data
-                    if (time >= 3600) {
-                        // System.out.println(time);
-                        // System.out.println(sumTemp);
-                    }
                 }
 
                 sumRSquare = 0; // Reset sum of residuals rquared
@@ -185,22 +163,11 @@ public class Optimizer implements Runnable {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         tempVtime.set( (int) (time / 60), sumTemp); // Set minute data
-                        
-                        // Debugging only
-                        // System.out.println("------------------");
-                        // System.out.println(tempVtime.get((int) (time / 60)));
-                        // System.out.println(tempVtime.indexOf(sumTemp));
                     }
                     // Second-Order Runge-Katta
                     preDelta = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp));
                     deltaTemp = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp + (0.5) * preDelta)); // Overestimated Trapezoidal Reimann
                     sumTemp = (sumTemp + deltaTemp);
-                    
-                    // Only to verify ending data
-                    if (time >= 3600) {
-                        // System.out.println(time);
-                        // System.out.println(sumTemp);
-                    }
                 }
 
                 sumRSquare = 0; // Reset sum of residuals rquared
@@ -239,9 +206,6 @@ public class Optimizer implements Runnable {
             for (alpha = initAlpha; alpha <= endAlpha + deltaAlpha / 2; alpha += deltaAlpha) {// (alpha = 0.2; alpha <= 1.0/3.0; alpha += 0.001) { // Increase percision to 7 decimals later
                 // Initialize variables
                 double sumTemp = INITTEMP; // Initialize starting tempterature
-                double deltaTemp = 0; // For first instance only at zero
-                double preDelta; // Prepare for adjustments needed sto trapezoidal
-                // alpha = 0;
 
                 // Perform Second-Order Runge-Kutta
                 // k_1 = h * f( x_n, y_n )
@@ -251,11 +215,6 @@ public class Optimizer implements Runnable {
                     // Add supposed data point at minute timestamps
                     if ( (int) (time % 60) == 0) {
                         tempVtime.set( (int) (time / 60), sumTemp); // Set minute data
-                        
-                        // Debugging only
-                        // System.out.println("------------------");
-                        // System.out.println(tempVtime.get((int) (time / 60)));
-                        // System.out.println(tempVtime.indexOf(sumTemp));
                     }
                     // Second-Order Runge-Katta
                     double k_1 = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp));
@@ -264,12 +223,6 @@ public class Optimizer implements Runnable {
                     double k_4 = deltaTime * (DiffFunc.diffFunc(alpha, beta, sumTemp + deltaTime * k_3));
                     double deltaRungeKutta = k_1 + k_2 + k_3 + k_4;
                     sumTemp = (sumTemp + deltaRungeKutta);
-                    
-                    // Only to verify ending data
-                    if (time >= 3600) {
-                        // System.out.println(time);
-                        // System.out.println(sumTemp);
-                    }
                 }
 
                 sumRSquare = 0; // Reset sum of residuals rquared
