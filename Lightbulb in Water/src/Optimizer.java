@@ -11,8 +11,8 @@ public class Optimizer implements Runnable {
     static ArrayList<Double> data = Data.data;
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     
-    private double deltaAlpha = 0.001;
-    private double deltaBeta = 0.000000000001;
+    private double deltaAlpha = 0.0001; // 10^-4
+    private double deltaBeta = 0.000000000001; // 10^-12
 
     public Optimizer(double recInitAlpha, double recEndAlpha, double recInitBeta, double recEndBeta) {
         this.initAlpha = recInitAlpha;

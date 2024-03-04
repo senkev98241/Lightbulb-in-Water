@@ -3,14 +3,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Main {
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     static ArrayList<Double> tempVtime = new ArrayList<Double>();
     public static void main(String[] args) throws Exception {
-        final double STARTBETA = 0.000000000001; // Start at 10^-11
-        final double ENDBETA = 0.00000001; // End at 10^-9
+        final double STARTBETA = 0.0; // Increment starting at 10^-13
+        final double ENDBETA = 0.000000001; // End at 10^-9
         
         // Create optimizer classes
         Optimizer optimizerOne = new Optimizer(0.0, 0.03, STARTBETA, ENDBETA);
