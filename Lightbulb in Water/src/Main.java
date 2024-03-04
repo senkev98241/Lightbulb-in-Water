@@ -9,26 +9,26 @@ public class Main {
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     static ArrayList<Double> tempVtime = new ArrayList<Double>();
     public static void main(String[] args) throws Exception {
-        final double STARTBETA = 0.00000000001; // Start at 10^-11
-        final double ENDBETA = 0.000000001; // End at 10^-9
+        final double STARTBETA = 0.000000000001; // Start at 10^-11
+        final double ENDBETA = 0.00000001; // End at 10^-9
         
         // Create optimizer classes
-        Optimizer optimizerOne = new Optimizer(0.20, 0.21, STARTBETA, ENDBETA);
-        Optimizer optimizerTwo = new Optimizer(0.21, 0.22, STARTBETA, ENDBETA);
-        Optimizer optimizerThree = new Optimizer(0.22, 0.238, STARTBETA, ENDBETA);
-        Optimizer optimizerFour = new Optimizer(0.23, 0.24, STARTBETA, ENDBETA);
-        Optimizer optimizerFive = new Optimizer(0.24, 0.25, STARTBETA, ENDBETA);
-        Optimizer optimizerSix = new Optimizer(0.25, 0.26, STARTBETA, ENDBETA);
-        Optimizer optimizerSeven = new Optimizer(0.26, 0.27, STARTBETA, ENDBETA);
-        Optimizer optimizerEight = new Optimizer(0.27, 0.28, STARTBETA, ENDBETA);
-        Optimizer optimizerNine = new Optimizer(0.28, 0.29, STARTBETA, ENDBETA);
-        Optimizer optimizerTen = new Optimizer(0.29, 0.30, STARTBETA, ENDBETA);
-        Optimizer optimizerEleven = new Optimizer(0.30, 0.31, STARTBETA, ENDBETA);
-        Optimizer optimizerTwelve = new Optimizer(0.31, 0.32, STARTBETA, ENDBETA);
-        Optimizer optimizerThirteen = new Optimizer(0.32, 0.33, STARTBETA, ENDBETA);
-        Optimizer optimizerFourteen = new Optimizer(0.33, 0.34, STARTBETA, ENDBETA);
-        Optimizer optimizerFifteen = new Optimizer(0.34, 0.35, STARTBETA, ENDBETA);
-        Optimizer optimizerSixteen = new Optimizer(0.35, 0.36, STARTBETA, ENDBETA);
+        Optimizer optimizerOne = new Optimizer(0.0, 0.03, STARTBETA, ENDBETA);
+        Optimizer optimizerTwo = new Optimizer(0.03, 0.06, STARTBETA, ENDBETA);
+        Optimizer optimizerThree = new Optimizer(0.06, 0.09, STARTBETA, ENDBETA);
+        Optimizer optimizerFour = new Optimizer(0.09, 0.12, STARTBETA, ENDBETA);
+        Optimizer optimizerFive = new Optimizer(0.12, 0.15, STARTBETA, ENDBETA);
+        Optimizer optimizerSix = new Optimizer(0.15, 0.18, STARTBETA, ENDBETA);
+        Optimizer optimizerSeven = new Optimizer(0.18, 0.21, STARTBETA, ENDBETA);
+        Optimizer optimizerEight = new Optimizer(0.21, 0.24, STARTBETA, ENDBETA);
+        Optimizer optimizerNine = new Optimizer(0.24, 0.27, STARTBETA, ENDBETA);
+        Optimizer optimizerTen = new Optimizer(0.27, 0.30, STARTBETA, ENDBETA);
+        Optimizer optimizerEleven = new Optimizer(0.30, 0.33, STARTBETA, ENDBETA);
+        Optimizer optimizerTwelve = new Optimizer(0.33, 0.36, STARTBETA, ENDBETA);
+        Optimizer optimizerThirteen = new Optimizer(0.36, 0.39, STARTBETA, ENDBETA);
+        Optimizer optimizerFourteen = new Optimizer(0.39, 0.42, STARTBETA, ENDBETA);
+        Optimizer optimizerFifteen = new Optimizer(0.42, 0.45, STARTBETA, ENDBETA);
+        Optimizer optimizerSixteen = new Optimizer(0.45, 0.47, STARTBETA, ENDBETA);
         // Optimizer optimizerSeventeen = new Optimizer(0.296, 0.302, STARTBETA, ENDBETA);
         // Optimizer optimizerEighteen = new Optimizer(0.302, 0.308, STARTBETA, ENDBETA);
         // Optimizer optimizerNineteen = new Optimizer(0.308, 0.314, STARTBETA, ENDBETA);

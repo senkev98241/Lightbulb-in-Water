@@ -12,7 +12,7 @@ public class Optimizer implements Runnable {
     // private ArrayList<Statistics> statistics = new ArrayList<Statistics>();
     
     private double deltaAlpha = 0.001;
-    double deltaBeta = 0.00000000001;
+    private double deltaBeta = 0.000000000001;
 
     public Optimizer(double recInitAlpha, double recEndAlpha, double recInitBeta, double recEndBeta) {
         this.initAlpha = recInitAlpha;
