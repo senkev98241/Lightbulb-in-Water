@@ -61,11 +61,15 @@ public class Optimizer implements Runnable {
                     if ( (int) (time % 60) == 0) {
                         tempVtime.set( (int) (time / 60), sumTemp); // Set minute data
                     }
+
+                    // k_1 = h * f(x_n, y_n + k_2)
+                    // y_n+1 = y_n + k_1 + O???
+                    // k_2 = 0.5 * k_1
                     
                     // Get lost deltaTemp, make new Delta temp, linear approximate
-                    prevDelta = deltaTemp / 2.0 ; // Add lost deltaTemp to pseudotrapezoid
                     deltaTemp = (DiffFunc.diffFunc(alpha, beta, sumTemp + prevDelta)) * deltaTime; // Overestimated Trapezoidal Reimann
                     sumTemp = (sumTemp + prevDelta + sumTemp + prevDelta + deltaTemp) / 2.0; // Linear approzimation from trapezoidal reimann
+                    prevDelta = deltaTemp / 2.0 ; // Add lost deltaTemp to pseudotrapezoid
                 }
 
                 sumRSquare = 0; // Reset sum of residuals rquared
