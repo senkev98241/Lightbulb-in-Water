@@ -7,7 +7,7 @@ public class Plot {
 
     private static final double ALPHA = 0.38855;
     private static final double BETA = Math.pow(10, -25);
-    final static  double deltaTime = 1;
+    final static int deltaTime = 60;
     final static int SUBINT = 3660; // For 3600 seconds
     final static double INITTEMP = 294.65; // Initial water temp 294.65 K
 
@@ -16,7 +16,7 @@ public class Plot {
     }
 
     static void makeCSV() throws IOException {
-        File file = new File("Lightbulb-in-Water\\Lightbulb in Water\\src\\plotData.csv");
+        File file = new File("Lightbulb in Water\\src\\plotData.csv");
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         String method = "";
@@ -28,7 +28,7 @@ public class Plot {
             double preDelta; // Prepare for adjustments needed sto trapezoidal
 
 
-            for (int j = 0; j <= SUBINT; j++) {
+            for (int j = 0; j <= SUBINT; j += deltaTime) {
                 bw.newLine();
 
                 switch(i) {

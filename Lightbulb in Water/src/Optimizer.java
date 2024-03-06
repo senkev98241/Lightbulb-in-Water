@@ -52,7 +52,7 @@ public class Optimizer implements Runnable {
                 // Initialize variables
                 double sumTemp = INITTEMP; // Initialize starting tempterature
                 double deltaTemp = 0; // For first instance only at zero
-                double prevDelta; // Prepare for adjustments needed sto trapezoidal
+                double prevDelta = 0; // Prepare for adjustments needed sto trapezoidal
                 // alpha = 0;
 
                 // Perform trapezoid reimann sum
