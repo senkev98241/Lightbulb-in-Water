@@ -62,9 +62,9 @@ public class Optimizer implements Runnable {
                         tempVtime.set( (int) (time / 60), sumTemp); // Set minute data
                     }
 
-                    // k_1 = h * f(x_n, y_n + k_2)
-                    // y_n+1 = y_n + k_1 + O???
-                    // k_2 = 0.5 * k_1
+                    // k_1 = h * f(y_n + k_2) // deltaTemp
+                    // y_n+1 = y_n + k_2 + 0.5 * k_1 + O???
+                    // k_2 = 0.5 * k_1 // prevDelta
                     
                     // Get lost deltaTemp, make new Delta temp, linear approximate
                     deltaTemp = (DiffFunc.diffFunc(alpha, beta, sumTemp + prevDelta)) * deltaTime; // Overestimated Trapezoidal Reimann
