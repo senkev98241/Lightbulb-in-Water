@@ -121,9 +121,9 @@ public class Optimizer implements Runnable {
                     }
                     
                     // Get lost deltaTemp, make new Delta temp, linear approximate
-                    preDelta = (DiffFunc.diffFunc(alpha, beta, sumTemp)) * deltaTime ; // Add lost deltaTemp to pseudotrapezoid
-                    deltaTemp = preDelta / 2.0; // Overestimated Trapezoidal Reimann
-                    sumTemp = (sumTemp + deltaTemp); // Linear approzimation from trapezoidal reimann
+                    preDelta = (DiffFunc.diffFunc(alpha, beta, sumTemp + DiffFunc.diffFunc(alpha, beta, sumTemp))) * deltaTime ; // Add lost deltaTemp to pseudotrapezoid
+                    // deltaTemp = preDelta / 2.0; // Overestimated Trapezoidal Reimann
+                    sumTemp = (sumTemp + preDelta); // Linear approzimation from trapezoidal reimann
                 }
 
                 sumRSquare = 0; // Reset sum of residuals rquared
