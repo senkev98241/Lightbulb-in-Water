@@ -7,7 +7,7 @@ public class Plot {
 
     private static final double ALPHA = 0.38855;
     private static final double BETA = Math.pow(10, -25);
-    final static int deltaTime = 60;
+    final static int deltaTime = 1;
     final static int SUBINT = 3660; // For 3600 seconds
     final static double INITTEMP = 294.65; // Initial water temp 294.65 K
 
@@ -44,10 +44,10 @@ public class Plot {
                         method = "Midpoint Euler";
                         bw.write(j + "," + sumTemp + "," + method);
                         // Get lost deltaTemp, make new Delta temp, linear approximate
-                        preDelta = (DiffFunc.diffFunc(ALPHA, BETA, sumTemp)) * deltaTime ; // Add lost deltaTemp to pseudotrapezoid
-                        deltaTemp = preDelta / 2.0; // Overestimated Trapezoidal Reimann
-                        sumTemp = (sumTemp + deltaTemp); // Linear approzimation from trapezoidal reimann
-                        break;
+                        preDelta = (DiffFunc.diffFunc(ALPHA, BETA, sumTemp + DiffFunc.diffFunc(ALPHA, BETA, sumTemp))) * deltaTime ; // Add lost deltaTemp to pseudotrapezoid
+                        // deltaTemp = preDelta / 2.0; // Overestimated Trapezoidal Reimann
+                        sumTemp = (sumTemp + preDelta); // Linear approzimation from trapezoidal reimann
+                            break;
 
                     case 3:
                         method = "2ndOrderRungeKutta";
