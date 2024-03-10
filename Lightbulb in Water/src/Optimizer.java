@@ -22,10 +22,10 @@ public class Optimizer implements Runnable {
     }
     public void run() {
         resetTempVTimeList();
-        pseudoTrapezoid();
+        // pseudoTrapezoid();
         midEuler();
-        rungKuttaOrderTwo();
-        rungKuttaOrderFour();
+        // rungKuttaOrderTwo();
+        // rungKuttaOrderFour();
     }
     
     private void resetTempVTimeList() {
@@ -142,7 +142,7 @@ public class Optimizer implements Runnable {
                 // break;
             } 
             // break;
-            System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t method is" + "Midpoint Euler");
+            // System.out.println("Alpha is " + alpha + "\t + Beta is " + beta + "\t method is" + "Midpoint Euler");
         }
     }
 

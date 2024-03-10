@@ -50,7 +50,7 @@ public class Data {
     }
 
     public static ArrayList<Double> extractData() {
-        String csvFile = "Lightbulb in Water\\src\\TempvWaterData.csv"; // Replace with the path to your CSV file
+        String csvFile = "Lightbulb-in-Water\\Lightbulb in Water\\src\\TempvWaterData.csv"; // Replace with the path to your CSV file
         ArrayList<String> stringList = readCSVToStringList(csvFile);
         ArrayList<Double> doubleList = convertStringListToDoubleList(stringList);
 
