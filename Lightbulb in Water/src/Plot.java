@@ -16,12 +16,12 @@ public class Plot {
     }
 
     static void makeCSV() throws IOException {
-        File file = new File("Lightbulb in Water\\src\\plotData.csv");
+        File file = new File("Lightbulb-in-Water\\Lightbulb in Water\\src\\plotData.csv");
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         String method = "";
         bw.write("Time,Temp,Method");
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 2; i <= 2; i++) {
             double sumTemp = INITTEMP; // Initialize starting tempterature
             double deltaTemp = 0; // For first instance only at zero
             double prevDelta = 0; // Prepare for adjustments needed sto trapezoidal
